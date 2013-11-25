@@ -1,0 +1,62 @@
+import java.applet.*;
+import java.awt.*;
+
+public class Eliza extends Applet {
+
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	static String scriptPathname = "C:\\Users\\JavaP3\\workspace\\Eliza\\script.txt";
+    static String testPathname = "c:\\cch\\eliza\\test";
+
+    boolean useWindow = true;
+    boolean local = true;
+
+    ElizaMain eliza;
+
+    public void init() {
+        showStatus("Loading Eliza");
+        eliza = new ElizaMain();
+    }
+
+    public void start() {
+        String script = getScriptParam();
+        String test = getTestParam();
+        if (local) {
+            script = scriptPathname;
+            test = testPathname;
+        }
+        showStatus("Loading script from " + script);
+        eliza.readScript(local, script);
+        showStatus("Ready");
+        if (useWindow){
+            eliza.runProgram(test, this);
+        }
+        else{
+        	eliza.runProgram(test, null);
+        }
+    }
+
+    public boolean handleEvent(Event e) {
+        return eliza.handleEvent(e);
+    }
+
+    String getScriptParam() {
+        String script = getParameter("script");
+        if (script == null){
+        	script = scriptPathname;
+        }
+        return script;
+    }
+
+    String getTestParam() {
+        String test = getParameter("test");
+        if (test == null){
+        	test = testPathname;
+        }
+        return test;
+    }
+
+  
+}
