@@ -1,8 +1,8 @@
-eliza
+egg
 =====
 
-the rogerian psychologist
+20% project
 
 needs a manifest file
 
-basically chayden's adapted for my computer, ie for offline use
+inspired by eliza
